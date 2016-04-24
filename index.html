@@ -1,9 +1,39 @@
 <html>
+
 <head>
+<title>Get component URLs</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+	// keep the global namespace clean
+	var cp_global = {
+		repos : [ 'cmjaimet', 'ottawanews' ],
+		outhtml : '',
+	};
+	cp_global.repos.forEach( function( _repo ) {
+		$.ajax( {
+	  url: 'https://api.github.com/repos/' + _repo + '/' + _repo + '.github.io/readme',
+	  data: {},
+	  success: function( result ) {
+			var _readme = window.atob( result.content ); // decode the string
+			var _lines = _readme.match( /\{[^\:]+\:[^\}]+\}/gi );
+			cp_global.outhtml += '<h2>' + _repo + '</h2>';
+			_lines.forEach( function( _line, _idx ) {
+				_component = _line.split( ':' );
+				// change to use react or angular or at least create DOM elements in vanilla JS
+				cp_global.outhtml += '<p><a href="https://' + _repo + 'github.io/' +  _component[1].replace( '}', '' ).trim() + '">' + _component[0].replace( '{', '' ).trim() + '</a></p>';
+			} );
+			$( '#components' ).html( cp_global.outhtml );
+	  }
+	} );
+} );
+</script>
 </head>
 
 <body>
-<p>	Hello there world!</p>
+<h1>Repo components</h1>
+<div id="components">
+
+</div>
 
 </body>
 </html>
