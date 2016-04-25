@@ -20,7 +20,7 @@
 			_lines.forEach( function( _line, _idx ) {
 				_component = _line.split( ':' );
 				// change to use react or angular or at least create DOM elements in vanilla JS
-				cp_global.outhtml += '<p><a href="https://' + _repo + 'github.io/' +  _component[1].replace( '}', '' ).trim() + '">' + _component[0].replace( '{', '' ).trim() + '</a></p>';
+				cp_global.outhtml += '<p><a href="https://' + _repo + '.github.io/' +  _component[1].replace( '}', '' ).trim() + '">' + _component[0].replace( '{', '' ).trim() + '</a></p>';
 			} );
 			$( '#components' ).html( cp_global.outhtml );
 	  }
