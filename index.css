@@ -1,0 +1,7 @@
+body { font-family: Arial; }
+h1 { color: #000; }
+#components {}
+#components h3 { font-size: 18px; background-color: #66E; color: #FFF; padding: 5px; }
+#components ul { list-style: none; }
+#components ul li { line-height: 28px; }
+#components ul li a { text-decoration: none; color: #33A; }
